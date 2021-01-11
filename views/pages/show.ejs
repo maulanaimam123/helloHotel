@@ -1,0 +1,63 @@
+<% layout('/layouts/boilerplate') %> 
+
+<h1><%= hotel.name %></h1>
+
+<section class="container my-5">
+    <div class="row content">
+        <div class="col-sm-12 col-md-6 px-0">
+            <img class="img-fluid w-100 rounded" src="<%= hotel.imageURL %> " alt="hotel image">
+        </div>
+    
+        <div class="col-sm-12 col-md-6">
+            <div class="hotel_info">
+                <p class="text-muted">Hotel ID: <%= hotel._id %></p>
+                <p><%= hotel.description %></p>
+                <ul>
+                    <li>Owner: <%= hotel.owner %> </li>
+                    <li>Price: $<%= hotel.price %> </li>
+                </ul>
+            </div>
+            
+            <div class="row container mx-0">
+                <div class="col-sm-12 col-md-4 px-1 mb-1">
+                    <a href="/hotel" class="btn btn-secondary container-fluid">Back to Listing</a>
+                </div>
+                <div class="col-sm-12 col-md-4 px-1 mb-1">
+                    <a href="/hotel/<%= hotel._id %>/edit" class="btn btn-warning container-fluid">Edit Hotel</a>
+                </div>
+                <div class="col-sm-12 col-md-4 px-1 mb-1">
+                    <form action="/hotel/<%= hotel._id %>?_method=DELETE" method="POST" class="btn btn-danger container-fluid delete_form">
+                        <button class="remove_button_css" >Delete Hotel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .remove_button_css {
+        color: white;
+        outline: none;
+        padding: 0px; 
+        border: 0px; 
+        box-sizing: none; 
+        background-color: transparent; 
+    }
+    .content {
+        border: 1px solid rgb(196, 187, 187);
+        border-radius: 5px;
+        padding: 3%;
+    }
+    .hotel_info {
+        margin-bottom: 50px;
+    }
+</style>
+
+<script>
+    delete_form = document.querySelector('.delete_form')
+    submit_button = document.querySelector('.remove_button_css')
+    delete_form.addEventListener("click", () => {
+        submit_button.click()
+    })
+</script>
